@@ -1,1 +1,207 @@
-<h1>Hello</h1>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FEH Damage Calculator</title>
+  <link rel="shortcut icon" type="image/x-icon" href="https://feh-stuff.github.io/favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="../css/datatables.min.css">
+  <link rel="stylesheet" href="../css/feh-stuff.css"> -->
+</head>
+<body>
+
+
+<!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<div class="container ">
+  <a class="navbar-brand" href="/">
+    <img src="../img/assets/header.png" height="30">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <div class="navbar-nav">
+
+      <a class="nav-item nav-link #"
+          href="../summon-simulator/">
+          Summon Simulator</a>
+
+      <a class="nav-item nav-link active"
+          href="#">
+          Unit Builder</a>
+    </div>
+  </div>
+</div>
+</nav> -->
+
+
+
+<!--   <div class="container">
+  <div class="row mt-2 justify-content-center">
+    <div class="card col-auto hero-canvas-container p-0 mb-2 border-0">
+<div class="spinner">
+  <span>TESTERUNI</span>
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+<canvas id="hero-canvas" width="10" height="10"></canvas>
+<a class="btn btn-danger d-none" id="download-img">
+  <img src="../img/assets/download-icon.png">
+</a>
+</div> -->
+
+
+<div class="w-100 d-lg-none"></div>
+
+<div class="card col mb-2 p-0">
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link build-type active" data-toggle="tab" role="tab" data-val="feh-unit">Damage Calculator</a>
+    </li>
+<!--   <li class="nav-item">
+  <a class="nav-link build-type" data-toggle="tab" href="#custom-unit" role="tab" data-val="custom-unit">Custom Unit</a>
+</li> -->
+</ul>
+
+
+
+<div class="card-body tab-content md-text-small" id="customize-hero-container">
+
+
+  <div class="tab-pane fade show active" id="feh-unit">
+
+    <section class="ml-2">
+
+      <!-- ATTACKER -->
+      <div class="d-flex mb-3 justify-content-between">
+        <img src="https://i.imgur.com/4igK4Ag.png" height="40" width="40">
+        <div class="col-2 col-xl-2 mr-auto">
+          <h5>Attacker</h5>
+        </div>
+        <div class="col-2 col-xl-2 ml-auto text-right">
+          <h5>Defender</h5>
+        </div>
+        <img src="https://i.imgur.com/xbFM3q1.png" height="40" width="40">
+        <!-- <button type="button" id="show-inherit" class="btn btn-sm btn-info" data-toggle="modal" data-target="#inherit-modal" disabled>Inheritance Planner</button> -->
+        <!-- <button type="button" id="bookmarks" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#bookmark-modal">Bookmarks</button> -->
+      </div>
+
+      <!-- ATTACK / DEFENSE -->
+      <div class="row mb-3 justify-content-around">
+        <label class="col-2 col-xl-1 col-form-label text-md-right">ATTACK</label>
+        <div class="col-2 col-xl-2 mr-auto">
+          <input type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp">
+        </div>
+        <div class="col-2 col-xl-2 ml-auto">
+          <input type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp">
+        </div>
+        <label class="col-2 col-xl-1 col-form-label text-md-left">DEFENSE</label>
+      </div>
+
+      <!-- BUFFS -->
+      <div class="row mb-3 justify-content-around">
+        <label class="col-2 col-xl-1 col-form-label text-md-right">BUFFS</label>
+        <div class="col-2 col-xl-2 mr-auto">
+          <input type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp">
+        </div>
+        <div class="col-2 col-xl-2 ml-auto">
+          <input type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp">
+        </div>
+        <label class="col-2 col-xl-1 col-form-label text-md-left">BUFFS</label>
+
+      </div>
+
+
+      <!-- TRIANGLE ADVANTAGE -->
+      <div class="row mb-3 form-check">
+        <label class="col-3 col-form-label">Attacker has triangle:</label>
+        <label class="custom-control custom-radio">
+          <input id="ta-adv" name="advantage" type="radio" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Advantage</span>
+        </label>
+
+        <label class="custom-control custom-radio">
+          <input id="ta-dis" name="advantage" type="radio" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Neutral</span>
+        </label>
+
+        <label class="custom-control custom-radio">
+          <input id="ta-neu" name="advantage" type="radio" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Disadvantage</span>
+        </label>
+      </div>
+
+
+      <!-- TRIANGLE ADEPT 3 -->
+      <div class="row mb-3 form-check">
+        <label class="col-3 col-form-label">Triangle Adept 3:</label>
+        <label class="custom-control custom-radio">
+          <input id="ta-adv" name="adept" type="radio" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Yes</span>
+        </label>
+
+        <label class="custom-control custom-radio">
+          <input id="ta-dis" name="adept" type="radio" class="custom-control-input" checked>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">No</span>
+        </label>
+      </div>
+
+    </section>
+
+    <hr>
+
+
+<div class="form-check col-8">
+  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+  <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
+  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+  <label class="form-check-label" for="defaultCheck2">Disabled checkbox</label>
+</div>
+
+
+    <hr>
+
+  </div>
+
+
+
+  <div class="col-xl-6">
+    <div class="d-flex mb-3">
+      <img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40">
+      <div class="col-2 col-xl-2 mr-auto">
+        <h5>Special</h5>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="form-row">
+      <label class="col-1"></label>
+      <select class="col-3 form-control" id="exampleFormControlSelect1">
+        <option>Bonfire / Iceberg</option>
+        <option>Ignis / Glacies</option>
+        <option>Draconic Aura</option>
+        <option>Dragon Fang</option>
+        <option>Moonbow</option>
+        <option>Luna</option>
+        <option>Black Luna</option>
+        <option>Glimmer</option>
+        <option>Astra</option>
+      </select>
+
+      <label class="col-2 col-xl-2 col-form-label text-md-right mr-3">DEF / RES</label>
+      <input type="number" min="0" max="9999" class="col-2 col-xl-2 form-control input-sp-hm" data-type="sp">
+    </div>
+
+  </div>
+
+  </body>
+  </html>
