@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
+<script type="text/javascript">
+	function showDefRes(that) {
+		if (that.value == "defresyes") {	    	
+			document.getElementById("blueflamelabel").style.display = "none";
+			document.getElementById("blueflamediv").style.display = "none";
+			document.getElementById("defreslabel").style.display = "block";
+			document.getElementById("defresinput").style.display = "block";
+			document.getElementById("defresdiv").style.display = "block";
+		} else if (that.value == "blueflame") {
+			document.getElementById("blueflamelabel").style.display = "block";
+			document.getElementById("blueflamediv").style.display = "block";
+			document.getElementById("defreslabel").style.display = "none";
+			document.getElementById("defresinput").style.display = "none";
+			document.getElementById("defresdiv").style.display = "none";
+		} else {
+			document.getElementById("blueflamelabel").style.display = "none";
+			document.getElementById("blueflamediv").style.display = "none";
+			document.getElementById("defreslabel").style.display = "none";
+			document.getElementById("defresinput").style.display = "none";
+			document.getElementById("defresdiv").style.display = "none";
+		}
+	}
+</script>
+
+
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Bootstrap 4, from LayoutIt!</title>
+	<title>AAAAAAAAAAAAAAAA</title>
 
-	<meta name="description" content="Source code generated using layoutit.com">
-	<meta name="author" content="LayoutIt!">
+	<meta name="description" content="A simple damage calculator for FEH">
+	<meta name="author" content="Mnovdef">
 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
@@ -16,7 +44,7 @@
 </head>
 <body>
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="background: gray">
 
 
 		<!-- NAVBAR -->
@@ -107,109 +135,175 @@
 		<div class="row mb-3"></div>
 
 
-      	<!-- TRIANGLE ADVANTAGE -->
-      	<div class="row mb-2 form-check justify-content-between" style="text-align: center;">
-      		<label class="col-2 col-form-label">Attacker has triangle:</label>
-      		<label class="custom-control custom-radio">
-      			<input id="ta-adv" name="advantage" type="radio" class="custom-control-input">
-      			<span class="custom-control-indicator"></span>
-      			<span class="custom-control-description">Advantage</span>
-      		</label>
+		<!-- TRIANGLE ADVANTAGE -->
+		<div class="row mb-2 form-check justify-content-between" style="text-align: center;">
+			<label class="col-2 col-form-label">Attacker has triangle:</label>
+			<label class="custom-control custom-radio">
+				<input id="ta-adv" name="advantage" type="radio" class="custom-control-input">
+				<span class="custom-control-indicator"></span>
+				<span class="custom-control-description">Advantage</span>
+			</label>
 
-      		<label class="custom-control custom-radio">
-      			<input id="ta-neu" name="advantage" type="radio" class="custom-control-input" checked>
-      			<span class="custom-control-indicator"></span>
-      			<span class="custom-control-description">Neutral</span>
-      		</label>
+			<label class="custom-control custom-radio">
+				<input id="ta-neu" name="advantage" type="radio" class="custom-control-input" checked>
+				<span class="custom-control-indicator"></span>
+				<span class="custom-control-description">Neutral</span>
+			</label>
 
-      		<label class="custom-control custom-radio">
-      			<input id="ta-dis" name="advantage" type="radio" class="custom-control-input">
-      			<span class="custom-control-indicator"></span>
-      			<span class="custom-control-description">Disadvantage</span>
-      		</label>
-      	</div>
-
-
-
-      	<!-- TRIANGLE ADEPT 3 -->
-      	<div class="row mb-2 form-check justify-content-between" style="text-align: center;">
-      		<label class="col-2 col-form-label">Triangle Adpet 3:</label>
-      		<label class="custom-control custom-radio">
-      			<input id="ta3yes" name="ta" type="radio" class="custom-control-input">
-      			<span class="custom-control-indicator"></span>
-      			<span class="custom-control-description">Yes</span>
-      		</label>
-
-      		<label class="custom-control custom-radio">
-      			<input id="ta3no" name="ta" type="radio" class="custom-control-input" checked>
-      			<span class="custom-control-indicator"></span>
-      			<span class="custom-control-description">No</span>
-      		</label>
-      	</div>
-
-
-
-      	<hr>
-
-
-      	<!-- SPECIAL -->
-		<div class="row justify-content-between">
-			<div class="col-md-5">
-      			<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-left: auto;">
-			</div>
-			<div class="col-md-2">
-      				<h3 style="text-align:center;"><b>Special</b></h3>
-			</div>
-			<div class="col-md-5">
-      			<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-right:auto;">
-			</div>
+			<label class="custom-control custom-radio">
+				<input id="ta-dis" name="advantage" type="radio" class="custom-control-input">
+				<span class="custom-control-indicator"></span>
+				<span class="custom-control-description">Disadvantage</span>
+			</label>
 		</div>
 
 
 
-		<!-- SEPARATOR -->
+		<!-- TRIANGLE ADEPT 3 -->
+		<div class="row mb-2 form-check justify-content-between" style="text-align: center;">
+			<label class="col-2 col-form-label">Triangle Adpet 3:</label>
+			<label class="custom-control custom-radio">
+				<input id="ta3yes" name="ta" type="radio" class="custom-control-input">
+				<span class="custom-control-indicator"></span>
+				<span class="custom-control-description">Yes</span>
+			</label>
+
+			<label class="custom-control custom-radio">
+				<input id="ta3no" name="ta" type="radio" class="custom-control-input" checked>
+				<span class="custom-control-indicator"></span>
+				<span class="custom-control-description">No</span>
+			</label>
+		</div>
+
+
+		<hr>
+
+
 		<div class="row mb-3"></div>
-		<div class="row mb-3"></div>
 
 
-		<!-- SPECIAL SELECTION -->
-      	<div class="row justify-content-between">
-      		<div class="col-md-3"></div>
-      		<select class="col-md-2 form-control" id="exampleFormControlSelect1">
-      			<option>Bonfire / Iceberg</option>
-      			<option>Ignis / Glacies</option>
-      			<option>Draconic Aura</option>
-      			<option>Dragon Fang</option>
-      			<option>Moonbow</option>
-      			<option>Luna</option>
-      			<option>Black Luna</option>
-      			<option>Glimmer</option>
-      			<option>Astra</option>
-      		</select>
 
-      		<label class="col-md-2 col-form-label" style="text-align: right;">DEF / RES</label>			
-
-
-      		<div class="col-md-2">						
-				<input type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp">
+		<!-- SPECIALS TITLES -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row justify-content-between">
+					<div class="col-md-4">
+						<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-left: auto;">
+					</div>
+					<div class="col-md-4">
+						<h3 style="text-align:center;"><b>Atk Special</b></h3>
+					</div>
+					<div class="col-md-4">
+						<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-right:auto;">
+					</div>
+				</div>				
 			</div>
 
-      		<div class="col-md-3"></div>
-      	</div>
+			<div class="col-md-6">
+				<div class="row justify-content-between">
+					<div class="col-md-4">
+						<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-left: auto;">
+					</div>
+					<div class="col-md-4">
+						<h3 style="text-align:center;"><b>Def Special</b></h3>
+					</div>
+					<div class="col-md-4">
+						<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-right:auto;">
+					</div>
+				</div>	
+			</div>
+		</div>
+
+
+		<!-- SEPARATOR -->
+		<div class="row mb-3"></div>
+
+
+		<!-- SPECIAL SELECTIONS -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row justify-content-between">
+					<div class="col-md-4"></div>
+					<select onchange="showDefRes(this)" class="col-md-4 form-control" id="exampleFormControlSelect1">
+						<option>None</option>
+						<option value="defresyes">Bonfire / Iceberg</option>
+						<option value="defresyes">Ignis / Glacies</option>
+						<option>Draconic Aura</option>
+						<option>Dragon Fang</option>
+						<option>Moonbow</option>
+						<option>Luna</option>
+						<option>Black Luna</option>
+						<option>Glimmer</option>
+						<option>Astra</option>
+						<option value="blueflame">Blue Flame</option>
+					</select>
+					<div class="col-md-4"></div>
+				</div>				
+			</div>
+
+			<div class="col-md-6">
+				<div class="row justify-content-between">
+					<div class="col-md-4"></div>
+					<select class="col-md-4 form-control" id="exampleFormControlSelect1">
+						<option>None</option>
+						<option>Pavise / Aegis</option>
+						<option>Escutcheon / Sacred Cowl</option>
+					</select>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- SEPARATOR -->
+		<div class="row mb-3"></div>
+
+
+		<!-- SPECIAL OPTIONS -->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row justify-content-center">
+					<!-- DEF / RES -->
+					<label id="defreslabel" class="col-md-3 col-form-label" style="text-align: right; display: none">DEF / RES</label>			
+
+					<div id="defresdiv" class="col-md-3">						
+						<input id="defresinput" type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="display: none">
+					</div>
+
+
+
+					<label id="blueflamelabel" class="col-md-3 col-form-label" style="text-align: right; display:none;">Close to ally:</label>			
+
+					<div id="blueflamediv" class="col-md-3 col-form-label justify-content-between" style="vertical-align: middle; text-align: center; display: none;">						
+						<label class="col-md-1 custom-control custom-radio">
+							<input id="bfyes" name="bf" type="radio" class="col-md-1 custom-control-input">
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">Yes</span>
+						</label>
+
+						<label class="custom-control custom-radio">
+							<input id="bfno" name="bf" type="radio" class="col-md-1 custom-control-input" checked>
+							<span class="custom-control-indicator"></span>
+							<span class="custom-control-description">No</span>
+						</label>
+					</div>
 
 
 
 
+				</div>				
+			</div>
 
-
-
-
-
+			<div class="col-md-6">
+				<div class="row justify-content-between">
+					
+				</div>	
+			</div>
+		</div>
 	</div>
 
-
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/scripts.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
 </body>
 </html>
