@@ -4,19 +4,22 @@
 
 <script type="text/javascript">
 	function showDefRes(that) {
-		if (that.value == "defresyes") {	    	
+		if (that.value == "1" || that.value == "2" || that.value == "11" || that.value == "12")  {
+			// BONFIRE / IGNIS	    	
 			document.getElementById("blueflamelabel").style.display = "none";
 			document.getElementById("blueflamediv").style.display = "none";
 			document.getElementById("defreslabel").style.display = "block";
 			document.getElementById("defresinput").style.display = "block";
 			document.getElementById("defresdiv").style.display = "block";
-		} else if (that.value == "blueflame") {
+		} else if (that.value == "10") {
+			// BLUE FLAME
 			document.getElementById("blueflamelabel").style.display = "block";
 			document.getElementById("blueflamediv").style.display = "block";
 			document.getElementById("defreslabel").style.display = "none";
 			document.getElementById("defresinput").style.display = "none";
 			document.getElementById("defresdiv").style.display = "none";
 		} else {
+			// NO OPTIONS
 			document.getElementById("blueflamelabel").style.display = "none";
 			document.getElementById("blueflamediv").style.display = "none";
 			document.getElementById("defreslabel").style.display = "none";
@@ -24,6 +27,76 @@
 			document.getElementById("defresdiv").style.display = "none";
 		}
 	}
+
+
+	function calculate() {
+		var atkstat = document.getElementById("atkstat").value == "" ? 0 : +document.getElementById("atkstat").value;
+		var atkbuff = document.getElementById("atkbuff").value == "" ? 0 : +document.getElementById("atkbuff").value;
+		var defstat = document.getElementById("defstat").value == "" ? 0 : +document.getElementById("defstat").value;
+		var defbuff = document.getElementById("defbuff").value == "" ? 0 : +document.getElementById("defbuff").value;
+
+		
+		var atk = atkstat + atkbuff;
+		var mit = defstat + defbuff;
+
+		var eff = document.getElementById("effective").checked ? 1.5 : 1;
+
+
+		var temp_radios = document.getElementsByName("triadv");
+		for (var i=0; i<3; i++) {
+			if (temp_radios[i].type === 'radio' && temp_radios[i].checked) {
+				var adv = +temp_radios[i].value;
+    		}
+		}
+
+
+		var aff = document.getElementById("ta3yes").checked ? 20 : 0
+
+
+		var temp_specialSel = document.getElementById("specialsel");
+		var specialid = +temp_specialSel.options[temp_specialSel.selectedIndex].value
+
+
+		var defresspd = document.getElementById("defresinput").value == "" ? 0 : +document.getElementById("defresinput").value;
+
+
+		var closetoally = document.getElementById("bfyes").checked ? 1 : 0;
+
+
+
+		alert("atkstat = "       + atkstat + "        atkbuff = "       + atkbuff +
+			"\ndefstat = "       + defstat + "        defbuff = "       + defbuff +
+			"\nadv =     "       + adv +     "        aff = "           + aff +
+			"\nspecialid = "     + specialid +
+			"\ndefresspd = "     + defresspd +
+			"\neff = "	         + eff + 
+			"\nclose = "         + closetoally)
+
+
+
+
+		var atkxeff = Math.floor(atk*eff);
+		var advmult = adv * (aff+20)/20;
+		var boost = 0;
+		var deftileeff = 0;
+
+
+		var extra = atkxeff*advmult + boost - mit - deftileeff;
+
+		var untruncked = atkxeff + extra
+		var damage = atkxeff + Math.floor(extra);
+
+		alert("atkxeff = " + atkxeff + 
+			"\nadvmult = " + advmult + 
+			"\nextra = " + extra + 
+			"\nuntruncked = " + untruncked + 
+			"\ndamage = "   + damage);
+	}
+
+
+
+
+
 </script>
 
 
@@ -33,11 +106,13 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>AAAAAAAAAAAAAAAA</title>
+	<title>FEH Calculator</title>
 
 	<meta name="description" content="A simple damage calculator for FEH">
 	<meta name="author" content="Mnovdef">
 
+
+  	<link rel="shortcut icon" type="image/x-icon" href="https://feh-stuff.github.io/favicon.ico">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 
@@ -93,11 +168,11 @@
 				<label class="mr-2"><b>ATK</b></label>
 			</div>
 			<div class="col-xs-3 mr-2">						
-				<input type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="text-align:center">
+				<input id="atkstat" type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="text-align:center">
 			</div>
 
 			<div class="col-xs-3 ml-2">						
-				<input type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="text-align:center">
+				<input id="defstat" type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="text-align:center">
 			</div>
 
 			<div class="col-xs-2" style="align-items: center;">
@@ -116,11 +191,11 @@
 				<label class="mr-2"><b>Buffs</b></label>
 			</div>
 			<div class="col-xs-3 mr-2">						
-				<input type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="text-align:center">
+				<input id="atkbuff" type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="text-align:center">
 			</div>
 
 			<div class="col-xs-3 ml-2">						
-				<input type="number" min="0" max="9999" class="form-control input-sp-hm " data-type="sp" style="text-align:center">
+				<input id="defbuff" type="number" min="0" max="9999" class="form-control input-sp-hm " data-type="sp" style="text-align:center">
 			</div>
 
 			<div class="col-xs-2"  style="align-items: center;">
@@ -137,19 +212,19 @@
 		<div class="row mb-2 form-check justify-content-between" style="text-align: center;">
 			<label class="col-xs-2 col-form-label mr-3">Triangle:</label>
 			<label class="custom-control custom-radio">
-				<input id="ta-adv" name="advantage" type="radio" class="custom-control-input">
+				<input id="ta-adv" name="triadv" type="radio" class="custom-control-input" value="0.2">
 				<span class="custom-control-indicator"></span>
 				<span class="custom-control-description">Adv</span>
 			</label>
 
 			<label class="custom-control custom-radio">
-				<input id="ta-neu" name="advantage" type="radio" class="custom-control-input" checked>
+				<input id="ta-neu" name="triadv" type="radio" class="custom-control-input" value="0" checked>
 				<span class="custom-control-indicator"></span>
 				<span class="custom-control-description">Neu</span>
 			</label>
 
 			<label class="custom-control custom-radio">
-				<input id="ta-dis" name="advantage" type="radio" class="custom-control-input">
+				<input id="ta-dis" name="triadv" type="radio" class="custom-control-input" value="-0.2">
 				<span class="custom-control-indicator"></span>
 				<span class="custom-control-description">Dis</span>
 			</label>
@@ -161,13 +236,13 @@
 		<div class="row mb-2 form-check justify-content-between" style="text-align: center;">
 			<label class="col-xs-2 col-form-label mr-3">Triangle Adpet 3:</label>
 			<label class="custom-control custom-radio">
-				<input id="ta3yes" name="ta" type="radio" class="custom-control-input">
+				<input id="ta3yes" name="ta3" type="radio" class="custom-control-input">
 				<span class="custom-control-indicator"></span>
 				<span class="custom-control-description">Yes</span>
 			</label>
 
 			<label class="custom-control custom-radio">
-				<input id="ta3no" name="ta" type="radio" class="custom-control-input" checked>
+				<input id="ta3no" name="ta3" type="radio" class="custom-control-input" checked>
 				<span class="custom-control-indicator"></span>
 				<span class="custom-control-description">No</span>
 			</label>
@@ -204,18 +279,20 @@
 
 		<!-- SPECIAL SELECTIONS -->
 		<div class="row justify-content-center" style="margin: 0 auto; float:none">
-			<select onchange="showDefRes(this)" class="col-xs-6 form-control">
-				<option>None</option>
-				<option value="defresyes">Bonfire / Iceberg</option>
-				<option value="defresyes">Ignis / Glacies</option>
-				<option>Draconic Aura</option>
-				<option>Dragon Fang</option>
-				<option>Moonbow</option>
-				<option>Luna</option>
-				<option>Black Luna</option>
-				<option>Glimmer</option>
-				<option>Astra</option>
-				<option value="blueflame">Blue Flame</option>
+			<select id="specialsel" onchange="showDefRes(this)" class="col-xs-6 form-control">
+				<option value="0">None</option>
+				<option value="1">Bonfire / Iceberg</option>
+				<option value="2">Ignis / Glacies</option>
+				<option value="3">Draconic Aura</option>
+				<option value="4">Dragon Fang</option>
+				<option value="5">Moonbow</option>
+				<option value="6">Luna</option>
+				<option value="7">Black Luna</option>
+				<option value="8">Glimmer</option>
+				<option value="9">Astra</option>
+				<option value="10">Blue Flame</option>
+				<option value="11">Fire Emblem</option>
+				<option value="12">Regnal Astra</option>
 			</select>
 		</div>
 
@@ -243,7 +320,7 @@
 		<div class="row justify-content-center">
 
 			<!-- BONFIRE ETC -->
-			<label id="defreslabel" class="col-xs-3 col-form-label mr-3" style="text-align: right; display: none">DEF / RES</label>			
+			<label id="defreslabel" class="col-xs-3 col-form-label mr-3" style="text-align: right; display: none">DEF / RES / SPD</label>			
 
 			<div id="defresdiv" class="col-xs-3">						
 				<input id="defresinput" type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="display: none; text-align: center">
@@ -301,7 +378,7 @@
 		<div class="row justify-content-around">
 			<div class="col-xs-4 justify-content-center">
 				<label style="font-size: 18px">
-					<input type="checkbox" name="vehicle1" value="Effective" style="margin-right:5px; vertical-align: center">Effective
+					<input type="checkbox" name="vehicle1" id="effective" style="margin-right:5px; vertical-align: center">Effective
 				</label><br>
 				<label style="font-size: 18px">
 					<input type="checkbox" name="vehicle1" value="Shining" style="margin-right:5px; vertical-align: center">Shining
@@ -338,15 +415,13 @@
 
 		<div class="row justify-content-center">
 			<div class="col-xs-4 mr-3 ml-auto justify-content-center" style="background: red;">
-				<button style="position: relative;">Calculate</button>
+				<button onclick="calculate()" type="button" class="btn btn-primary" style="position: relative">Button</button>
 			</div>
-			<div class="col-xs-8 ml-3 mr-auto justify-content-center" style="background: green">
+			<div class="col-xs-8 ml-3 mr-auto justify-content-center">
 				<label style="position: relative; font-size: 20px"><b>assssfffffffffffffffffffs</b></label>
 			</div>
 			
 		</div>
-
-
 
 
 
