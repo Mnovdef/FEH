@@ -48,19 +48,19 @@
 
 
 		<!-- NAVBAR -->
-		<div class="row ">
+<!-- 		<div class="row ">
 			<div class="col-xs-12 nav-fill">
 				<ul class="nav nav-tabs">
 					<li class="nav-item mr-auto">
 						<a class="nav-link active">FEH Calculator</a>
 					</li>
-<!-- 					<li class="nav-item">
+				<li class="nav-item">
 						<a class="nav-link active">Support Me ❤️</a>
-					</li> -->
+					</li>
 				</ul>
 			</div>
 		</div>
-
+	-->
 
 		<!-- SEPARATOR -->
 		<div class="row mb-3"></div>
@@ -177,38 +177,22 @@
 		<hr>
 
 
-		<div class="row mb-3"></div>
+		<!-- SEPARATOR -->
+		<div class="row mb-1"></div>
 
 
 
 		<!-- SPECIALS TITLES -->
-		<div class="row">
-			<div class="col-xs-6">
-				<div class="row justify-content-between">
-					<div class="col-xs-4">
-						<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-left: auto;">
-					</div>
-					<div class="col-xs-4">
-						<h3 style="text-align:center;"><b>Atk Special</b></h3>
-					</div>
-					<div class="col-xs-4">
-						<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-right:auto;">
-					</div>
-				</div>				
+		<div class="row justify-content-center">
+			<div class="col-xs-4">
+				<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-left: auto;">
 			</div>
+			<div class="col-xs-4 ml-3 mr-3">
+				<h3 style="text-align:center;"><b>Atk Special</b></h3>
+			</div>
+			<div class="col-xs-4">
+				<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-right:auto;">
 
-			<div class="col-xs-6">
-				<div class="row justify-content-between">
-					<div class="col-xs-4">
-						<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-left: auto;">
-					</div>
-					<div class="col-xs-4">
-						<h3 style="text-align:center;"><b>Def Special</b></h3>
-					</div>
-					<div class="col-xs-4">
-						<img src="https://i.imgur.com/3hHEKqi.png" height="40" width="40" style="display: block;margin-right:auto;">
-					</div>
-				</div>	
 			</div>
 		</div>
 
@@ -218,28 +202,24 @@
 
 
 		<!-- SPECIAL SELECTIONS -->
-		<div class="row">
-			<div class="col-xs-6">
-				<div class="row justify-content-between">
-					<div class="col-xs-4"></div>
-					<select onchange="showDefRes(this)" class="col-xs-4 form-control" id="exampleFormControlSelect1">
-						<option>None</option>
-						<option value="defresyes">Bonfire / Iceberg</option>
-						<option value="defresyes">Ignis / Glacies</option>
-						<option>Draconic Aura</option>
-						<option>Dragon Fang</option>
-						<option>Moonbow</option>
-						<option>Luna</option>
-						<option>Black Luna</option>
-						<option>Glimmer</option>
-						<option>Astra</option>
-						<option value="blueflame">Blue Flame</option>
-					</select>
-					<div class="col-xs-4"></div>
-				</div>				
-			</div>
+		<div class="row justify-content-center" style="margin: 0 auto; float:none">
+			<select onchange="showDefRes(this)" class="col-xs-6 form-control">
+				<option>None</option>
+				<option value="defresyes">Bonfire / Iceberg</option>
+				<option value="defresyes">Ignis / Glacies</option>
+				<option>Draconic Aura</option>
+				<option>Dragon Fang</option>
+				<option>Moonbow</option>
+				<option>Luna</option>
+				<option>Black Luna</option>
+				<option>Glimmer</option>
+				<option>Astra</option>
+				<option value="blueflame">Blue Flame</option>
+			</select>
+		</div>
 
-			<div class="col-xs-6">
+
+<!-- 			<div class="col-xs-6">
 				<div class="row justify-content-between">
 					<div class="col-xs-4"></div>
 					<select class="col-xs-4 form-control" id="exampleFormControlSelect1">
@@ -249,6 +229,63 @@
 					</select>
 					<div class="col-xs-4"></div>
 				</div>
+			</div> -->
+
+
+		<!-- SEPARATOR -->
+		<div class="row mb-3"></div>
+
+
+		<!-- SPECIAL OPTIONS -->
+		<div class="row justify-content-center">
+
+			<!-- BONFIRE ETC -->
+			<label id="defreslabel" class="col-xs-3 col-form-label mr-3" style="text-align: right; display: none">DEF / RES</label>			
+
+			<div id="defresdiv" class="col-xs-3">						
+				<input id="defresinput" type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="display: none">
+			</div>
+
+
+			<!-- BLUE FLAME -->
+			<label id="blueflamelabel" class="col-xs-3 col-form-label mr-3" style="text-align: right; display:none;">Close to ally:</label>			
+
+			<div id="blueflamediv" class="col-xs-3 col-form-label justify-content-between" style="vertical-align: middle; text-align: center; display: none;">						
+				<label class="col-xs-1 custom-control custom-radio">
+					<input id="bfyes" name="bf" type="radio" class="col-xs-1 custom-control-input">
+					<span class="custom-control-indicator"></span>
+					<span class="custom-control-description">Yes</span>
+				</label>
+
+				<label class="custom-control custom-radio">
+					<input id="bfno" name="bf" type="radio" class="col-xs-1 custom-control-input" checked>
+					<span class="custom-control-indicator"></span>
+					<span class="custom-control-description">No</span>
+				</label>
+			</div>
+		</div>
+
+
+
+		<hr>
+
+
+		<!-- SEPARATOR -->
+		<div class="row mb-1"></div>
+
+
+
+		<!-- OPTIONS TITLE -->
+		<div class="row justify-content-center">
+			<div class="col-xs-4">
+				<img src="https://i.imgur.com/Q7Q4Um7.png" height="40" width="40" style="display: block;margin-left: auto;">
+			</div>
+			<div class="col-xs-4 ml-3 mr-3">
+				<h3 style="text-align:center;"><b>Options</b></h3>
+			</div>
+			<div class="col-xs-4">
+				<img src="https://i.imgur.com/Q7Q4Um7.png" height="40" width="40" style="display: block;margin-right:auto;">
+
 			</div>
 		</div>
 
@@ -257,48 +294,57 @@
 		<div class="row mb-3"></div>
 
 
-		<!-- SPECIAL OPTIONS -->
-		<div class="row">
-			<div class="col-xs-6">
-				<div class="row justify-content-center">
-					<!-- DEF / RES -->
-					<label id="defreslabel" class="col-xs-3 col-form-label" style="text-align: right; display: none">DEF / RES</label>			
-
-					<div id="defresdiv" class="col-xs-3">						
-						<input id="defresinput" type="number" min="0" max="9999" class="form-control input-sp-hm" data-type="sp" style="display: none">
-					</div>
-
-
-
-					<label id="blueflamelabel" class="col-xs-3 col-form-label" style="text-align: right; display:none;">Close to ally:</label>			
-
-					<div id="blueflamediv" class="col-xs-3 col-form-label justify-content-between" style="vertical-align: middle; text-align: center; display: none;">						
-						<label class="col-xs-1 custom-control custom-radio">
-							<input id="bfyes" name="bf" type="radio" class="col-xs-1 custom-control-input">
-							<span class="custom-control-indicator"></span>
-							<span class="custom-control-description">Yes</span>
-						</label>
-
-						<label class="custom-control custom-radio">
-							<input id="bfno" name="bf" type="radio" class="col-xs-1 custom-control-input" checked>
-							<span class="custom-control-indicator"></span>
-							<span class="custom-control-description">No</span>
-						</label>
-					</div>
-
-
-
-
-				</div>				
+		<!-- OPTIONS -->
+		<div class="row justify-content-around">
+			<div class="col-xs-4 justify-content-center">
+				<input type="checkbox" name="vehicle1" value="Effective" style="margin-right:5px; vertical-align: center">
+					<label style="font-size: 18px">Effective</label><br>
+				<input type="checkbox" name="vehicle1" value="Shining" style="margin-right:5px; vertical-align: center">
+					<label style="font-size: 18px">Shinig</label><br>
 			</div>
-
-			<div class="col-xs-6">
-				<div class="row justify-content-between">
-					
-				</div>	
+			<div class="col-xs-4 justify-content-center">
+				<input type="checkbox" name="vehicle1" value="Bike" style="margin-right:5px; vertical-align: center">
+					<label style="font-size: 18px">Wrath</label><br>
+				<input type="checkbox" name="vehicle1" value="Bike" style="margin-right:5px; vertical-align: center">
+					<label style="font-size: 18px">Wo Weapon</label><br>
+			</div>
+			<div class="col-xs-4 justify-content-center">
+				<input type="checkbox" name="vehicle1" value="Bike" style="margin-right:5px; vertical-align: center">
+					<label style="font-size: 18px">Staff</label><br>
+				<input type="checkbox" name="vehicle1" value="Bike" style="margin-right:5px; vertical-align: center">
+					<label style="font-size: 18px">Defense Tile</label><br>
 			</div>
 		</div>
+
+
+
+		<hr>
+
+
+		<!-- SEPARATOR -->
+		<div class="row mb-1"></div>
+
+
+
+
+		<div class="row justify-content-center">
+			<div class="col-xs-4 mr-3 ml-auto justify-content-center" style="background: red;">
+				<button style="position: relative;">Calculate</button>
+			</div>
+			<div class="col-xs-8 ml-3 mr-auto justify-content-center" style="background: green">
+				<label style="position: relative; font-size: 20px"><b>assssfffffffffffffffffffs</b></label>
+			</div>
+			
+		</div>
+
+
+
+
+
+
+
 	</div>
+
 
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
