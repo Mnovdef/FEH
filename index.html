@@ -30,17 +30,21 @@
 
 
 	function calculate() {
+
+		// GET STATS
 		var atkstat = document.getElementById("atkstat").value == "" ? 0 : +document.getElementById("atkstat").value;
 		var atkbuff = document.getElementById("atkbuff").value == "" ? 0 : +document.getElementById("atkbuff").value;
 		var defstat = document.getElementById("defstat").value == "" ? 0 : +document.getElementById("defstat").value;
 		var defbuff = document.getElementById("defbuff").value == "" ? 0 : +document.getElementById("defbuff").value;
 
-		
+
+		// SUM STATS
 		var atk = atkstat + atkbuff;
 		var mit = defstat + defbuff;
 
-		var eff = document.getElementById("effective").checked ? 1.5 : 1;
 
+		// GET TRIANGLE MULTIPLIER
+		var eff = document.getElementById("effective").checked ? 1.5 : 1;
 
 		var temp_radios = document.getElementsByName("triadv");
 		for (var i=0; i<3; i++) {
@@ -49,48 +53,63 @@
     		}
 		}
 
-
 		var aff = document.getElementById("ta3yes").checked ? 20 : 0
 
 
+		// CHECKING FOR SOME OPTIONS
 		var temp_specialSel = document.getElementById("specialsel");
 		var specialid = +temp_specialSel.options[temp_specialSel.selectedIndex].value
 
-
+		var deftileeff = document.getElementById("deftile").checked ? Math.floor(mit * 0.3) : 0;
 		var defresspd = document.getElementById("defresinput").value == "" ? 0 : +document.getElementById("defresinput").value;
+		var closetoally = document.getElementById("bfyes").checked ? 15 : 0;
 
 
-		var closetoally = document.getElementById("bfyes").checked ? 1 : 0;
+		// CALCULATION OF SPECIAL DAMAGE (glimmer and astra are done after)
+		var boost = 0;
+
+		if (specialid == 1) boost = Math.floor(defresspd * 0.5);
+		if (specialid == 2) boost = Math.floor(defresspd * 0.8);
+
+		if (specialid == 3) boost = Math.floor(atk * 0.3);
+		if (specialid == 4) boost = Math.floor(atk * 0.5);
+
+		if (specialid == 5) boost = Math.floor(mit * 0.3);
+		if (specialid == 6) boost = Math.floor(mit * 0.5);
+		if (specialid == 7) boost = Math.floor(mit * 0.8);
+
+		if (specialid == 10) boost = 10 + closetoally;
+
+		if (specialid == 11) boost = Math.floor(defresspd * 0.3);
+		if (specialid == 12) boost = Math.floor(defresspd * 0.4);
 
 
-
-		alert("atkstat = "       + atkstat + "        atkbuff = "       + atkbuff +
-			"\ndefstat = "       + defstat + "        defbuff = "       + defbuff +
-			"\nadv =     "       + adv +     "        aff = "           + aff +
-			"\nspecialid = "     + specialid +
-			"\ndefresspd = "     + defresspd +
-			"\neff = "	         + eff + 
-			"\nclose = "         + closetoally)
-
-
-
-
+		// DAMAGE CALCULATION
 		var atkxeff = Math.floor(atk*eff);
 		var advmult = adv * (aff+20)/20;
-		var boost = 0;
-		var deftileeff = 0;
+
+		var damage = Math.max(atkxeff + Math.floor(atkxeff*advmult + boost - mit - deftileeff), 0);
 
 
-		var extra = atkxeff*advmult + boost - mit - deftileeff;
+		// GLIMMER, ASTRA AND STAFF
+		if (specialid == 8) damage = Math.floor(damage * 1.5);
+		if (specialid == 9) damage = Math.floor(damage * 2.5);
 
-		var untruncked = atkxeff + extra
-		var damage = atkxeff + Math.floor(extra);
+		if (document.getElementById("staff").checked) damage = Math.floor(damage * 0.5)
 
-		alert("atkxeff = " + atkxeff + 
-			"\nadvmult = " + advmult + 
-			"\nextra = " + extra + 
-			"\nuntruncked = " + untruncked + 
-			"\ndamage = "   + damage);
+
+		// WRATH, WO AND SHINING
+		var extradmg = 0
+		
+		if (document.getElementById("wrath").checked)   extradmg += 10
+		if (document.getElementById("wo").checked) 	    extradmg += 10
+		if (document.getElementById("shining").checked) extradmg += 7
+
+		// RESULT
+		var result = damage + extradmg;
+
+
+		document.getElementById("result").innerHTML= "<b>" + result + "</b>";
 	}
 
 
@@ -119,26 +138,16 @@
 </head>
 <body>
 
-	<div class="container-fluid" style="background: gray">
+	<div class="container-fluid" style="background: #C0C0C0">
 
+		<div class="row mb-2"></div>
 
-		<!-- NAVBAR -->
-<!-- 		<div class="row ">
-			<div class="col-xs-12 nav-fill">
-				<ul class="nav nav-tabs">
-					<li class="nav-item mr-auto">
-						<a class="nav-link active">FEH Calculator</a>
-					</li>
-				<li class="nav-item">
-						<a class="nav-link active">Support Me ❤️</a>
-					</li>
-				</ul>
-			</div>
+		<div class="row justify-content-center">
+			<img src="https://i.imgur.com/TfXiMUR.png" style="height: 80%; width: 100%">			
 		</div>
-	-->
 
 		<!-- SEPARATOR -->
-		<div class="row mb-3"></div>
+		<div class="row mb-2"></div>
 
 
 		<!-- ATTACKER / DEFENDER -->
@@ -159,7 +168,7 @@
 
 
 		<!-- SEPARATOR -->
-		<div class="row mb-4"></div>
+		<div class="row mb-3"></div>
 
 
 		<!-- ATTACK / DEFENSE -->
@@ -252,8 +261,6 @@
 
 		<!-- SEPARATOR -->
 		<hr>
-		<div class="row mb-1"></div>
-
 
 
 		<!-- SPECIALS TITLES -->
@@ -349,7 +356,6 @@
 
 		<!-- SEPARATOR -->
 		<hr>
-		<div class="row mb-1"></div>
 
 
 
@@ -378,26 +384,26 @@
 		<div class="row justify-content-around">
 			<div class="col-xs-4 justify-content-center">
 				<label style="font-size: 18px">
-					<input type="checkbox" name="vehicle1" id="effective" style="margin-right:5px; vertical-align: center">Effective
+					<input type="checkbox" name="aqaqa" id="effective" style="margin-right:5px; vertical-align: center">Effective
 				</label><br>
 				<label style="font-size: 18px">
-					<input type="checkbox" name="vehicle1" value="Shining" style="margin-right:5px; vertical-align: center">Shining
+					<input type="checkbox" name="aqaqa" id="shining" style="margin-right:5px; vertical-align: center">Shining
 				</label><br>
 			</div>
 			<div class="col-xs-4 justify-content-center">
 					<label style="font-size: 18px">
-						<input type="checkbox" name="vehicle1" value="Bike" style="margin-right:5px; vertical-align: center">Wrath
+						<input type="checkbox" name="aqaqa" id="wrath" style="margin-right:5px; vertical-align: center">Wrath
 					</label><br>
 					<label style="font-size: 18px">
-						<input type="checkbox" name="vehicle1" value="Bike" style="margin-right:5px; vertical-align: center">Wo Weapon
+						<input type="checkbox" name="aqaqa" id="wo" style="margin-right:5px; vertical-align: center">Wo Weapon
 					</label><br>
 			</div>
 			<div class="col-xs-4 justify-content-center">
 				<label style="font-size: 18px">
-					<input type="checkbox" name="vehicle1" value="Bike" style="margin-right:5px; vertical-align: center">Staff
+					<input type="checkbox" name="aqaqa" id="staff" style="margin-right:5px; vertical-align: center">Staff
 				</label><br>
 				<label style="font-size: 18px">
-					<input type="checkbox" name="vehicle1" value="Bike" style="margin-right:5px; vertical-align: center">Defense Tile
+					<input type="checkbox" name="aqaqa" id="deftile" style="margin-right:5px; vertical-align: center">Defense Tile
 				</label><br>
 			</div>
 		</div>
@@ -415,10 +421,10 @@
 
 		<div class="row justify-content-center">
 			<div class="col-xs-4 mr-3 ml-auto justify-content-center" style="background: red;">
-				<button onclick="calculate()" type="button" class="btn btn-primary" style="position: relative">Button</button>
+				<button onclick="calculate()" type="button" class="btn btn-primary" style="position: relative">Calculate!</button>
 			</div>
 			<div class="col-xs-8 ml-3 mr-auto justify-content-center">
-				<label style="position: relative; font-size: 20px"><b>assssfffffffffffffffffffs</b></label>
+				<label id="result" style="position: relative; font-size: 20px"><b>0</b></label>
 			</div>
 			
 		</div>
